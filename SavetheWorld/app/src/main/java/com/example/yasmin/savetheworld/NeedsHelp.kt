@@ -30,9 +30,11 @@ class NeedsHelp : AppCompatActivity() {
 
         if (type == "Needs Help"){
             title.text = "I NEED:"
+            button4.setBackgroundColor(Color.parseColor("#b2dfdb"))
         } else {
             title.text = "I CAN HELP WITH:"
             button5.setVisibility(View.INVISIBLE)
+            button4.setBackgroundColor(Color.parseColor("#ffccbc"))
         }
 
 
