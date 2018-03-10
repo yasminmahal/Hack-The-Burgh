@@ -6,16 +6,20 @@ import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+    private var type = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
         button.setOnClickListener{
+            type = "Needs Help"
             switchToNeedsHelp()
         }
         button2.setOnClickListener{
-            switchToHelping()
+            type = "Helping"
+            switchToNeedsHelp()
         }
         button3.setOnClickListener{
             switchToMaps()
@@ -23,12 +27,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun switchToNeedsHelp() {
-        val intent = Intent (this, NeedsHelp::class.java)
-        startActivity(intent)
-    }
 
-    private fun switchToHelping() {
-        val intent = Intent (this, Helping::class.java)
+        val intent = Intent (this, NeedsHelp::class.java)
+        intent.putExtra("type", type)
         startActivity(intent)
     }
 

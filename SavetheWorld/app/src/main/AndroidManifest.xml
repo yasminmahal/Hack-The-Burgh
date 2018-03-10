@@ -21,10 +21,6 @@
             android:label="@string/title_activity_needs_help"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Helping"
-            android:label="@string/title_activity_helping"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".DisasterMap"
             android:label="@string/title_activity_disaster_map"
             android:theme="@style/AppTheme.NoActionBar"></activity>
