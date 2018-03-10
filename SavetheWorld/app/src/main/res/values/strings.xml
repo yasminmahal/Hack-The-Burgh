@@ -3,5 +3,23 @@
     <string name="title_activity_needs_help">NeedsHelp</string>
     <string name="title_activity_helping">Helping</string>
     <string name="title_activity_disaster_map">DisasterMap</string>
+<<<<<<< HEAD
     <string name="title_activity_emergency_map">Map</string>
+=======
+    <string name="title_activity_supply_new_service">Enter Details</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="title_activity_service_list">ServiceList</string>
+>>>>>>> 9dbeece1d56bd65557f681622a7ec720eeba3d05
 </resources>

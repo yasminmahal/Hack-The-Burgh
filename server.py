@@ -6,18 +6,36 @@ app = Flask(__name__)
 database
 [name, title, description, picture], ...]
 """
-MEDICAL_STORE = {}
-HOUSING_STORE = {}
-FOOD_STORE = {}
-TRANSPORT_STORE = {}
+MEDICAL_STORE = []
+HOUSING_STORE = []
+FOOD_STORE = []
+TRANSPORT_STORE = []
+
+@app.route('/get_medical_info', methods=['GET'])
+def get_medical_info():
+    return MEDICAL_STORE
+
+@app.route('/get_housing_info', methods=['GET'])
+def get_housing_info():
+    return HOUSING_STORE
+
+@app.route('/get_food_info', methods=['GET'])
+def get_food_info():
+    return FOOD_STORE
+
+@app.route('/get_transport_info', methods=['GET'])
+def get_transport_info():
+    return TRANSPORT_STORE
 
 @app.route('/save_medical_info', methods=['PUT'])
 def save_medical_info():
     """
     request body contains name, title and description
     """
+    print(request.data)
     if request.is_json:
         data = request.get_json()
+        print(data)
         name = data.get('name')
         title = data.get('title')
         description = data.get('description')
