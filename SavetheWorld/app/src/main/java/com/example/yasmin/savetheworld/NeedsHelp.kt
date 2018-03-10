@@ -1,5 +1,6 @@
 package com.example.yasmin.savetheworld
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.support.design.widget.Snackbar
@@ -52,8 +53,13 @@ class NeedsHelp : AppCompatActivity() {
 
 
         button4.setOnClickListener { //when the play button is pressed, switch to the maps activity
-            switchToMap()
+            switchToMaps()
         }
+    }
+
+    private fun switchToMaps() {
+        val intent = Intent (this, DisasterMap::class.java)
+        startActivity(intent)
     }
 
 
