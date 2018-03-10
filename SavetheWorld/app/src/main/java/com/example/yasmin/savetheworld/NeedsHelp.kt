@@ -26,6 +26,7 @@ class NeedsHelp : AppCompatActivity() {
         val seekBar = findViewById<SeekBar>(R.id.seekBar)
         var title = findViewById<TextView>(R.id.textView2)
         val type = intent.getStringExtra("type")
+        var service = "SHELTER"
 
 
         if (type == "Needs Help"){
@@ -43,6 +44,7 @@ class NeedsHelp : AppCompatActivity() {
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
                 if (progress == 0) { //each position on the seekbar represents a different difficulty
                     text.text = "SHELTER"
+                    service = "HOUSING"
                     if (type == "Needs Help"){
                         button4.setBackgroundColor(Color.parseColor("#b2dfdb"))
                     } else {
@@ -52,6 +54,7 @@ class NeedsHelp : AppCompatActivity() {
 
                 } else if (progress ==1 ) {
                     text.text = "TRANSPORT"
+                    service = "TRANSPORT"
                     if (type == "Needs Help"){
                         button4.setBackgroundColor(Color.parseColor("#4db6ac"))
                     } else {
@@ -61,6 +64,7 @@ class NeedsHelp : AppCompatActivity() {
 
                 } else if (progress == 2) {
                     text.text = "MEDICAL ATTENTION"
+                    service = "MEDICAL"
                     if (type == "Needs Help"){
                         button4.setBackgroundColor(Color.parseColor("#009688"))
                     } else {
@@ -70,6 +74,7 @@ class NeedsHelp : AppCompatActivity() {
 
                 } else if (progress == 3 ) {
                     text.text = "FOOD"
+                    service = "FOOD"
                     if (type == "Needs Help"){
                         button4.setBackgroundColor(Color.parseColor("#00796b"))
                     } else {
@@ -88,12 +93,12 @@ class NeedsHelp : AppCompatActivity() {
 
 
         button4.setOnClickListener {
-            switchToInfo()
+            switchToInfo(service)
         }
     }
-    private fun switchToInfo() {
-        val intent= Intent(this,DisasterMap:: class.java)
-
+    private fun switchToInfo(service: String) {
+        val intent = Intent(this,SupplyNewService:: class.java)
+        intent.putExtra("service", service)
 
         startActivity(intent)
     }
