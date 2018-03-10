@@ -1,5 +1,7 @@
 package com.example.yasmin.savetheworld
 
+import android.app.Activity
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationListener
@@ -14,6 +16,7 @@ import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.places.ui.PlacePicker
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -31,6 +34,7 @@ class EmergencyMap : AppCompatActivity(), OnMapReadyCallback, GoogleApiClient.Co
     private var mLastLocation: Location? = null
     private var mCurrentLocation: Location? = null
     private lateinit var locationCallback: LocationCallback
+    private val PLACE_PICKER_REQUEST = 999
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -145,4 +149,18 @@ class EmergencyMap : AppCompatActivity(), OnMapReadyCallback, GoogleApiClient.Co
     override fun onStatusChanged(p0: String?, p1: Int, p2: Bundle?) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        //AppCompat.checkSelfPermission( requestCode,resultCode, data)
+
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == PLACE_PICKER_REQUEST) {
+                val place = PlacePicker.getPlace(this, data)
+                val placename = place.name
+                val latlng = place.latLng
+            }
+        }
+    }
+
 }
