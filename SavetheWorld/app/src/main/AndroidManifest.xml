@@ -3,20 +3,16 @@
     package="com.example.yasmin.savetheworld">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
-<<<<<<< HEAD
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
          location permissions for the 'MyLocation' functionality. 
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-=======
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
->>>>>>> 9dbeece1d56bd65557f681622a7ec720eeba3d05
 
     <application
         android:allowBackup="true"
@@ -40,7 +36,6 @@
             android:name=".DisasterMap"
             android:label="@string/title_activity_disaster_map"
             android:theme="@style/AppTheme.NoActionBar" />
-<<<<<<< HEAD
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -56,7 +51,6 @@
         <activity
             android:name=".EmergencyMap"
             android:label="@string/title_activity_emergency_map"></activity>
-=======
         <activity
             android:name=".SupplyNewService"
             android:label="@string/title_activity_supply_new_service" />
@@ -64,7 +58,6 @@
             android:name=".ServiceList"
             android:label="@string/title_activity_service_list"
             android:theme="@style/AppTheme.NoActionBar"></activity>
->>>>>>> 9dbeece1d56bd65557f681622a7ec720eeba3d05
     </application>
 
 </manifest>

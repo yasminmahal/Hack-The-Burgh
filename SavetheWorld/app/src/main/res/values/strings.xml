@@ -3,9 +3,7 @@
     <string name="title_activity_needs_help">NeedsHelp</string>
     <string name="title_activity_helping">Helping</string>
     <string name="title_activity_disaster_map">DisasterMap</string>
-<<<<<<< HEAD
     <string name="title_activity_emergency_map">Map</string>
-=======
     <string name="title_activity_supply_new_service">Enter Details</string>
 
     <!-- Strings related to login -->
@@ -21,5 +19,4 @@
         completions."
     </string>
     <string name="title_activity_service_list">ServiceList</string>
->>>>>>> 9dbeece1d56bd65557f681622a7ec720eeba3d05
 </resources>
