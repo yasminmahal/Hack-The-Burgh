@@ -90,11 +90,20 @@ class NeedsHelp : AppCompatActivity() {
         button4.setOnClickListener {
             switchToInfo()
         }
+
+        button5.setOnClickListener {
+            switchtoEmergency()
+        }
     }
     private fun switchToInfo() {
         val intent= Intent(this,DisasterMap:: class.java)
 
 
+        startActivity(intent)
+    }
+
+    private fun switchtoEmergency() {
+        val intent = Intent(this, EmergencyMap:: class.java)
         startActivity(intent)
     }
 
