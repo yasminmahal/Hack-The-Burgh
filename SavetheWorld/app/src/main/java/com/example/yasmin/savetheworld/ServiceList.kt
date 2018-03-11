@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 
@@ -38,9 +39,14 @@ class ServiceList : AppCompatActivity() {
                     if (response!!.isSuccessful) {
                         servicesAvailable = response.body()!!.string()
                         println("<<<<<<<<<" + servicesAvailable)
-                        val posts = servicesAvailable.split(",")
-                        val adapter : ArrayAdapter<String> = ArrayAdapter(applicationContext, android.R.layout.simple_list_item_1, posts)
-                        serviceList.adapter = adapter
+                        if (servicesAvailable == "") {
+                            val parentLayout = findViewById<View>(android.R.id.content)
+                            Snackbar.make(parentLayout, "None available, try again later!", Snackbar.LENGTH_LONG).show()
+                        } else {
+                            val posts = servicesAvailable.split(",")
+                            val adapter: ArrayAdapter<String> = ArrayAdapter(applicationContext, android.R.layout.simple_list_item_1, posts)
+                            serviceList.adapter = adapter
+                        }
 
                     }
                 }
@@ -56,9 +62,14 @@ class ServiceList : AppCompatActivity() {
                     if (response!!.isSuccessful) {
                         servicesAvailable = response.body()!!.string()
                         println("<<<<<<<<<" + servicesAvailable)
-                        val posts = servicesAvailable.split(",")
-                        val adapter : ArrayAdapter<String> = ArrayAdapter(applicationContext, android.R.layout.simple_list_item_1, posts)
-                        serviceList.adapter = adapter
+                        if (servicesAvailable == "") {
+                            val parentLayout = findViewById<View>(android.R.id.content)
+                            Snackbar.make(parentLayout, "None available, try again later!", Snackbar.LENGTH_LONG).show()
+                        } else {
+                            val posts = servicesAvailable.split(",")
+                            val adapter: ArrayAdapter<String> = ArrayAdapter(applicationContext, android.R.layout.simple_list_item_1, posts)
+                            serviceList.adapter = adapter
+                        }
 
                     }
                 }
@@ -74,9 +85,14 @@ class ServiceList : AppCompatActivity() {
                     if (response!!.isSuccessful) {
                         servicesAvailable = response.body()!!.string()
                         println("<<<<<<<<<" + servicesAvailable)
-                        val posts = servicesAvailable.split(",")
-                        val adapter : ArrayAdapter<String> = ArrayAdapter(applicationContext, android.R.layout.simple_list_item_1, posts)
-                        serviceList.adapter = adapter
+                        if (servicesAvailable == "") {
+                            val parentLayout = findViewById<View>(android.R.id.content)
+                            Snackbar.make(parentLayout, "None available, try again later!", Snackbar.LENGTH_LONG).show()
+                        } else {
+                            val posts = servicesAvailable.split(",")
+                            val adapter: ArrayAdapter<String> = ArrayAdapter(applicationContext, android.R.layout.simple_list_item_1, posts)
+                            serviceList.adapter = adapter
+                        }
 
                     }
                 }
@@ -92,9 +108,14 @@ class ServiceList : AppCompatActivity() {
                     if (response!!.isSuccessful) {
                         servicesAvailable = response.body()!!.string()
                         println("<<<<<<<<<" + servicesAvailable)
-                        val posts = servicesAvailable.split(",")
-                        val adapter : ArrayAdapter<String> = ArrayAdapter(applicationContext, android.R.layout.simple_list_item_1, posts)
-                        serviceList.adapter = adapter
+                        if (servicesAvailable == "") {
+                            val parentLayout = findViewById<View>(android.R.id.content)
+                            Snackbar.make(parentLayout, "None available, try again later!", Snackbar.LENGTH_LONG).show()
+                        } else {
+                            val posts = servicesAvailable.split(",")
+                            val adapter: ArrayAdapter<String> = ArrayAdapter(applicationContext, android.R.layout.simple_list_item_1, posts)
+                            serviceList.adapter = adapter
+                        }
 
                     }
                 }
@@ -103,11 +124,6 @@ class ServiceList : AppCompatActivity() {
 
         serviceList.onItemClickListener = AdapterView.OnItemClickListener{ _, _, position, _ ->
             switchToMoreInformation(position, typeOfService)
-        }
-
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
         }
     }
 
