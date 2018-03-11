@@ -28,6 +28,7 @@ import android.content.Intent
 import retrofit2.Call
 import retrofit2.Response
 import android.util.Log
+import android.widget.Toast
 import com.google.gson.Gson
 import okhttp3.ResponseBody
 //import com.google.android.gms.common.api.CommonStatusCodes
@@ -55,18 +56,20 @@ class SupplyNewService : AppCompatActivity() {
             val name = name.text.toString()
             val title = titleInput.text.toString()
             val description = description.text.toString()
-            saveService(name, title, description, typeOfService)
+            val number = telephone.text.toString()
+            saveService(name, title, description, number, typeOfService)
 
-            switchToServiceList(typeOfService)
+            Toast.makeText(this,"Submitted, thank you for helping your community",Toast.LENGTH_LONG).show()
+            switchToMain()
         }
 
     }
 
-    private fun saveService(name: String, title: String, description: String, typeofService: String){
+    private fun saveService(name: String, title: String, description: String, number: String, typeofService: String){
 
         val mDatabaseService = RetrofitClient.getInstance()
         if (typeofService == "FOOD") {
-            mDatabaseService.saveFoodInfo(ServiceForServer(name, title, description)).enqueue(object : retrofit2.Callback<String> {
+            mDatabaseService.saveFoodInfo(ServiceForServer(name, title, description, number)).enqueue(object : retrofit2.Callback<String> {
                 override fun onResponse(call: Call<String>?, response: Response<String>?) {
 
                     if (response!!.isSuccessful) {
@@ -82,7 +85,7 @@ class SupplyNewService : AppCompatActivity() {
             }
             )
         } else if (typeofService == "MEDICAL") {
-            mDatabaseService.saveMedicalInfo(ServiceForServer(name, title, description)).enqueue(object : retrofit2.Callback<String> {
+            mDatabaseService.saveMedicalInfo(ServiceForServer(name, title, description, number)).enqueue(object : retrofit2.Callback<String> {
                 override fun onResponse(call: Call<String>?, response: Response<String>?) {
 
                     if (response!!.isSuccessful) {
@@ -98,7 +101,7 @@ class SupplyNewService : AppCompatActivity() {
             }
             )
         } else if (typeofService == "TRANSPORT") {
-            mDatabaseService.saveTransportInfo(ServiceForServer(name, title, description)).enqueue(object : retrofit2.Callback<String> {
+            mDatabaseService.saveTransportInfo(ServiceForServer(name, title, description, number)).enqueue(object : retrofit2.Callback<String> {
                 override fun onResponse(call: Call<String>?, response: Response<String>?) {
 
                     if (response!!.isSuccessful) {
@@ -114,7 +117,7 @@ class SupplyNewService : AppCompatActivity() {
             }
             )
         } else if (typeofService == "HOUSING") {
-            mDatabaseService.saveHousingInfo(ServiceForServer(name, title, description)).enqueue(object : retrofit2.Callback<String> {
+            mDatabaseService.saveHousingInfo(ServiceForServer(name, title, description, number)).enqueue(object : retrofit2.Callback<String> {
                 override fun onResponse(call: Call<String>?, response: Response<String>?) {
 
                     if (response!!.isSuccessful) {
@@ -133,12 +136,10 @@ class SupplyNewService : AppCompatActivity() {
 
     }
 
-    private fun switchToServiceList(service:  String) {
-        val intent = Intent(this, ServiceList::class.java)
-        intent.putExtra("service", service)
+    private fun switchToMain() {
+        val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
-
 
 /*        populateAutoComplete()
         password.setOnEditorActionListener(TextView.OnEditorActionListener { _, id, _ ->

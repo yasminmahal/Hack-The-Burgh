@@ -1,9 +1,13 @@
 package com.example.yasmin.savetheworld
 
+import android.app.Application
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 
 
@@ -20,19 +24,24 @@ class ServiceList : AppCompatActivity() {
         setContentView(R.layout.activity_service_list)
         setSupportActionBar(toolbar)
 
-        val typeOfService = intent.extras.getString("service")
-        var servicesAvailable = listOf<List<String>>()
+        val typeOfService = intent.getStringExtra("service")
+        var servicesAvailable = ""
 
-        if (typeOfService == "HOUSING") {
+        if (typeOfService == "MEDICAL") {
             val mDatabaseService = RetrofitClient.getInstance()
-            mDatabaseService.getHousingInfo().enqueue(object : retrofit2.Callback<ResponseBody> {
+            mDatabaseService.getMedicalInfo().enqueue(object : retrofit2.Callback<ResponseBody> {
                 override fun onFailure(call: Call<ResponseBody>?, t: Throwable?) {
                     Log.d("getting services", t.toString())
                 }
 
                 override fun onResponse(call: Call<ResponseBody>?, response: Response<ResponseBody>?) {
                     if (response!!.isSuccessful) {
-                        servicesAvailable = response.body()!! as List<List<String>>
+                        servicesAvailable = response.body()!!.string()
+                        println("<<<<<<<<<" + servicesAvailable)
+                        val posts = servicesAvailable.split(",")
+                        val adapter : ArrayAdapter<String> = ArrayAdapter(applicationContext, android.R.layout.simple_list_item_1, posts)
+                        serviceList.adapter = adapter
+
                     }
                 }
             })
@@ -45,7 +54,12 @@ class ServiceList : AppCompatActivity() {
 
                 override fun onResponse(call: Call<ResponseBody>?, response: Response<ResponseBody>?) {
                     if (response!!.isSuccessful) {
-                        servicesAvailable = response.body()!! as List<List<String>>
+                        servicesAvailable = response.body()!!.string()
+                        println("<<<<<<<<<" + servicesAvailable)
+                        val posts = servicesAvailable.split(",")
+                        val adapter : ArrayAdapter<String> = ArrayAdapter(applicationContext, android.R.layout.simple_list_item_1, posts)
+                        serviceList.adapter = adapter
+
                     }
                 }
             })
@@ -58,37 +72,50 @@ class ServiceList : AppCompatActivity() {
 
                 override fun onResponse(call: Call<ResponseBody>?, response: Response<ResponseBody>?) {
                     if (response!!.isSuccessful) {
-                        servicesAvailable = response.body()!! as List<List<String>>
+                        servicesAvailable = response.body()!!.string()
+                        println("<<<<<<<<<" + servicesAvailable)
+                        val posts = servicesAvailable.split(",")
+                        val adapter : ArrayAdapter<String> = ArrayAdapter(applicationContext, android.R.layout.simple_list_item_1, posts)
+                        serviceList.adapter = adapter
+
                     }
                 }
             })
         } else {
             val mDatabaseService = RetrofitClient.getInstance()
-            mDatabaseService.getMedicalInfo().enqueue(object : retrofit2.Callback<ResponseBody> {
+            mDatabaseService.getHousingInfo().enqueue(object : retrofit2.Callback<ResponseBody> {
                 override fun onFailure(call: Call<ResponseBody>?, t: Throwable?) {
                     Log.d("getting services", t.toString())
                 }
 
                 override fun onResponse(call: Call<ResponseBody>?, response: Response<ResponseBody>?) {
                     if (response!!.isSuccessful) {
-                        servicesAvailable = response.body()!! as List<List<String>>
+                        servicesAvailable = response.body()!!.string()
+                        println("<<<<<<<<<" + servicesAvailable)
+                        val posts = servicesAvailable.split(",")
+                        val adapter : ArrayAdapter<String> = ArrayAdapter(applicationContext, android.R.layout.simple_list_item_1, posts)
+                        serviceList.adapter = adapter
+
                     }
                 }
             })
         }
 
-        val posts = ArrayList<List<String>>()
-        for (post in servicesAvailable) {
-            posts.add(post)
+        serviceList.onItemClickListener = AdapterView.OnItemClickListener{ _, _, position, _ ->
+            switchToMoreInformation(position, typeOfService)
         }
-
-        val adapter : ArrayAdapter<List<String>> = ArrayAdapter(this, android.R.layout.simple_list_item_1, posts)
-        serviceList.adapter = adapter
 
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
         }
+    }
+
+    private fun switchToMoreInformation(post: Int, typeOfService: String) {
+        val intent = Intent(this, MoreInformation::class.java)
+        intent.putExtra("post", post)
+        intent.putExtra("type", typeOfService)
+        startActivity(intent)
     }
 
 }

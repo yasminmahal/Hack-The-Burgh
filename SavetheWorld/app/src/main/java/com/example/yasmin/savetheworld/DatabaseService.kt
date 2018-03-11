@@ -5,10 +5,7 @@ package com.example.yasmin.savetheworld
  */
 import android.graphics.Bitmap
 import okhttp3.ResponseBody
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.PUT
+import retrofit2.http.*
 
 interface DatabaseService {
 
@@ -36,6 +33,18 @@ interface DatabaseService {
     @GET("/get_transport_info")
     fun getTransportInfo(): retrofit2.Call<ResponseBody>
 
+    @GET("/get_full_medical")
+    fun getFullMedical(@Query("position") pos: Int): retrofit2.Call<ResponseBody>
+
+    @GET("/get_full_transport")
+    fun getFullTransport(@Query("position") pos: Int): retrofit2.Call<ResponseBody>
+
+    @GET("/get_full_food")
+    fun getFullFood(@Query("position") pos: Int): retrofit2.Call<ResponseBody>
+
+    @GET("/get_full_housing")
+    fun getFullHousing(@Query("position") pos: Int): retrofit2.Call<ResponseBody>
+
     @PUT("/delete_info")
-    fun deleteInfo(@Body service: ServiceForServer): retrofit2.Call<String>
+    fun deleteInfo(@Body service: DeleteFromServer): retrofit2.Call<String>
 }

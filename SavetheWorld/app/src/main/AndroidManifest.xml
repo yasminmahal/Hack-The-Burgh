@@ -30,11 +30,11 @@
         </activity>
         <activity
             android:name=".NeedsHelp"
-            android:label="@string/title_activity_needs_help"
+            android:label="Select Type of Service"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".DisasterMap"
-            android:label="@string/title_activity_disaster_map"
+            android:label="Current Emergencies Worldwide"
             android:theme="@style/AppTheme.NoActionBar" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -50,14 +50,16 @@
 
         <activity
             android:name=".EmergencyMap"
-            android:label="@string/title_activity_emergency_map"></activity>
+            android:label="Closest Emergency Services" />
         <activity
             android:name=".SupplyNewService"
             android:label="@string/title_activity_supply_new_service" />
         <activity
             android:name=".ServiceList"
-            android:label="@string/title_activity_service_list"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:label="Services Available"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".MoreInformation"
+            android:label="More Information"></activity>
     </application>
 
 </manifest>

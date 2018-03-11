@@ -21,21 +21,23 @@ class NeedsHelp : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_needs_help)
         setSupportActionBar(toolbar)
+        toolbar.setTitleTextColor(Color.WHITE)
 
         val text = findViewById<TextView>(R.id.textView) //the description text for each difficulty level
         val seekBar = findViewById<SeekBar>(R.id.seekBar)
+        seekBar.progress = 0
         var title = findViewById<TextView>(R.id.textView2)
         val type = intent.getStringExtra("type")
-        var service = "SHELTER"
+        var service = "HOUSING"
 
 
         if (type == "Needs Help"){
-            title.text = "I NEED:"
-            button4.setBackgroundColor(Color.parseColor("#b2dfdb"))
+            title.text = "I Need:"
+            button4.setBackgroundColor(Color.parseColor("#009688"))
         } else {
-            title.text = "I CAN HELP WITH:"
-            button5.setVisibility(View.INVISIBLE)
-            button4.setBackgroundColor(Color.parseColor("#ffccbc"))
+            title.text = "I Can Help With:"
+            button5.visibility = (View.INVISIBLE)
+            button4.setBackgroundColor(Color.parseColor("#fb8c00"))
         }
 
 
@@ -43,42 +45,42 @@ class NeedsHelp : AppCompatActivity() {
         seekBar.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener{  //when the seekbar is moved check how far it has moved
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
                 if (progress == 0) { //each position on the seekbar represents a different difficulty
-                    text.text = "SHELTER"
+                    text.text = "Shelter"
                     service = "HOUSING"
                     if (type == "Needs Help"){
-                        button4.setBackgroundColor(Color.parseColor("#b2dfdb"))
+                        button4.setBackgroundColor(Color.parseColor("#009688"))
                     } else {
-                        button4.setBackgroundColor(Color.parseColor("#ffccbc"))
+                        button4.setBackgroundColor(Color.parseColor("#fb8c00"))
                     }
 
 
                 } else if (progress ==1 ) {
-                    text.text = "TRANSPORT"
+                    text.text = "Transport"
                     service = "TRANSPORT"
                     if (type == "Needs Help"){
-                        button4.setBackgroundColor(Color.parseColor("#4db6ac"))
+                        button4.setBackgroundColor(Color.parseColor("#00897b"))
                     } else {
-                        button4.setBackgroundColor(Color.parseColor("#ff8a65"))
+                        button4.setBackgroundColor(Color.parseColor("#f57c00"))
                     }
 
 
                 } else if (progress == 2) {
-                    text.text = "MEDICAL ATTENTION"
+                    text.text = "Medical Attention"
                     service = "MEDICAL"
                     if (type == "Needs Help"){
-                        button4.setBackgroundColor(Color.parseColor("#009688"))
+                        button4.setBackgroundColor(Color.parseColor("#00796b"))
                     } else {
-                        button4.setBackgroundColor(Color.parseColor("#ff5722"))
+                        button4.setBackgroundColor(Color.parseColor("#ef6c00"))
                     }
 
 
                 } else if (progress == 3 ) {
-                    text.text = "FOOD"
+                    text.text = "Food"
                     service = "FOOD"
                     if (type == "Needs Help"){
-                        button4.setBackgroundColor(Color.parseColor("#00796b"))
+                        button4.setBackgroundColor(Color.parseColor("#00695c"))
                     } else {
-                        button4.setBackgroundColor(Color.parseColor("#e64a19"))
+                        button4.setBackgroundColor(Color.parseColor("#e65100"))
                     }
 
                 }
@@ -93,7 +95,11 @@ class NeedsHelp : AppCompatActivity() {
 
 
         button4.setOnClickListener {
-            switchToInfo(service)
+            if (type == "Needs Help") {
+                switchToList(service)
+            } else {
+                switchToInfo(service)
+            }
         }
 
         button5.setOnClickListener {
@@ -103,7 +109,12 @@ class NeedsHelp : AppCompatActivity() {
     private fun switchToInfo(service: String) {
         val intent = Intent(this,SupplyNewService:: class.java)
         intent.putExtra("service", service)
+        startActivity(intent)
+    }
 
+    private fun switchToList(service: String) {
+        val intent = Intent(this, ServiceList::class.java)
+        intent.putExtra("service", service)
         startActivity(intent)
     }
 
