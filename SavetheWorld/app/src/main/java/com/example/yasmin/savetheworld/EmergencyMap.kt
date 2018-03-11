@@ -190,6 +190,9 @@ class EmergencyMap : AppCompatActivity(), OnMapReadyCallback, GoogleApiClient.Co
     }
 
     private fun loadMarkers(location: Location) {
+
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(location.latitude, location.longitude), 15.toFloat()))
+
         val urlHospital = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${location.latitude},${location.longitude}&radius=5000&type=hospital&key=AIzaSyCVgLfSNS7-CMsfBVGROXGOwN3M8oWvrJg"
         val queue = Volley.newRequestQueue(this@EmergencyMap)
 
