@@ -3,11 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/SavetheWorld.iml" filepath="$PROJECT_DIR$/SavetheWorld.iml" />
-      <module fileurl="file://C:\Users\arano\Documents\Actual Documents\Hack-The-Burgh\SavetheWorld\SavetheWorld.iml" filepath="C:\Users\arano\Documents\Actual Documents\Hack-The-Burgh\SavetheWorld\SavetheWorld.iml" />
-      <module fileurl="file://$PROJECT_DIR$/SavetheWorld.iml" filepath="$PROJECT_DIR$/SavetheWorld.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\Users\arano\Documents\Actual Documents\Hack-The-Burgh\SavetheWorld\app\app.iml" filepath="C:\Users\arano\Documents\Actual Documents\Hack-The-Burgh\SavetheWorld\app\app.iml" />
     </modules>
   </component>
 </project>
