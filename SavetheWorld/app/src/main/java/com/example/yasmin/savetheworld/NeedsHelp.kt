@@ -16,10 +16,11 @@ import com.google.android.gms.maps.model.LatLngBounds
 
 import kotlinx.android.synthetic.main.activity_needs_help.*
 import kotlinx.android.synthetic.main.content_needs_help.*
+import org.jetbrains.anko.toast
 
 class NeedsHelp : AppCompatActivity() {
 
-    private val PLACE_PICKER_REQUEST = 999
+    private val PLACE_PICKER_REQUEST = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -112,22 +113,22 @@ class NeedsHelp : AppCompatActivity() {
     }
 
     private fun switchtoEmergency() {
-        //val intent = Intent(this, EmergencyMap:: class.java)
-        //startActivity(intent)
-        val southwest = LatLng(55.876046, -3.428411)
+        val intent = Intent(this, EmergencyMap:: class.java)
+        startActivity(intent)
+        /*val southwest = LatLng(55.876046, -3.428411)
         val northeast = LatLng(56.001359, -3.068800)
         val bounds = LatLngBounds(southwest, northeast)
         val intentBuilder = PlacePicker.IntentBuilder()
         intentBuilder.setLatLngBounds(bounds)
-
         startActivityForResult(intentBuilder.build(this), PLACE_PICKER_REQUEST)
+        */
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (resultCode == Activity.RESULT_OK) {
-            if (requestCode == PLACE_PICKER_REQUEST) {
+        if (requestCode == PLACE_PICKER_REQUEST) {
+            if (resultCode == Activity.RESULT_OK) {
                 val place = PlacePicker.getPlace(this, data)
                 val placename = place.name
                 val latlng = place.latLng
